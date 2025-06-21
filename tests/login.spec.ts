@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test';
 import { LoginPage } from '../pages/loginPage';
-import TestData from '../data/testData.json';
+import TestUsersData from '../data/testUsers.json';
 import { DashboardPage } from '../pages/dashboardPage';
 
 let loginPage: LoginPage;
@@ -13,7 +13,7 @@ test.beforeEach(async ({ page }) => {
 });
 
 test('TC-7 Verificar inicio de sesión exitoso con credenciales válidas', async ({ page }) => {
-  await loginPage.completarYHacerClickBotonLogin(TestData.usuarioRegistrado);
+  await loginPage.completarYHacerClickBotonLogin(TestUsersData.usuarioRegistrado);
   await expect(page.getByText('Inicio de sesión exitoso')).toBeVisible();
   await expect(dashboardPage.dashboardTitle).toBeVisible();
 });

@@ -1,12 +1,16 @@
 {
     "usuarioValido": {
-        "nombre": "Juan",
-        "apellido": "Torres",
+        "nombre": "Lautaro",
+        "apellido": "Sando",
         "email": "email@valido.com",
         "contraseña": "123456"
     },
     "usuarioRegistrado":{
         "email": "email1749914945014@valido.com",
+        "contraseña": "123456"
+    },
+    "usuarioNoRegistrado":{
+        "email": "noregistrado@valido.com",
         "contraseña": "123456"
     }
 }
