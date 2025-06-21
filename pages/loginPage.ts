@@ -19,7 +19,7 @@ export class LoginPage{
 
     async visitarPaginaLogin() {
         await this.page.goto('http://localhost:3000/login');
-        //await this.page.waitForLoadState('networkidle'); "Se comento esta linea ya que en firefox falla 2 casos de prueba por este waitforloadstate"
+        await this.page.waitForLoadState('networkidle'); //"Porque para firefox cada tanto falla esta linea consulta"
     }
 
     async completarFormularioLogin(usuario: {email: string, contraseña: string}) {
