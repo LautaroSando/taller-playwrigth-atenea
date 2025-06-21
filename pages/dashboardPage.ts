@@ -10,7 +10,7 @@ export class DashboardPage {
         this.dashboardTitle = page.getByTestId('titulo-dashboard')
     }
 
-    async visitarPaginaLogin() {
+    async visitarPaginaDashboard() {
         await this.page.goto('http://localhost:3000/dashboard');
         await this.page.waitForLoadState('networkidle');
     }

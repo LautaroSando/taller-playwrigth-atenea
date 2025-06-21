@@ -1,0 +1,11 @@
+{
+    "urlLogin" :{
+        "url" : "http://localhost:3000/login"
+    },
+    "urlDashboard" :{
+        "url" : "http://localhost:3000/dashboard"
+    },
+    "urlRegistro" :{
+        "url" : "http://localhost:3000/signup"
+    }
+}

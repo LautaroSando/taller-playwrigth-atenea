@@ -8,9 +8,11 @@ export class RegisterPage{
     readonly passwordInput: Locator;
     readonly registerButton: Locator;
     readonly loginButton: Locator;
+    readonly title: Locator;
 
     constructor(page: Page) {
         this.page = page;
+        this.title = page.getByTestId(('titulo-registro'));
         this.firstNameInput = page.locator('input[name="firstName"]');
         this.lastNameInput = page.locator('input[name="lastName"]');
         this.emailInput = page.locator('input[name="email"]');
