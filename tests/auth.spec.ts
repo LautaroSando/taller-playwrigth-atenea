@@ -35,12 +35,14 @@ test('TC-02: Intento de Login con Credenciales Inválidas', async ({ page }) => 
 test('TC-02.2: Intento de Login con Campos Vacíos', async ({ page }) => {
     await loginPage.completarYHacerClickBotonLogin({email:'',contraseña:''});
     await expect(page).toHaveURL(TestUrlData.urlLogin.url);
-   //await expect(loginPage.emailInput).toBeInvalid();
-   //await expect(loginPage.passwordInput).toBeInvalid(); 
-});
+    expect (await loginPage.esEmailInvalido()).toBe(true);
+    expect (await loginPage.esPasswordInvalido()).toBe(true);  
+})
 
 test('TC-02.3: Intento de Login con Email sin Contraseña', async ({ page }) => {
     await loginPage.completarYHacerClickBotonLogin({email:TestUsersData.usuarioRegistrado.email,contraseña:''});
+    expect(await loginPage.esPasswordInvalido()).toBe(true);
+    expect(await loginPage.obtenerMensajeValidacionCampo(loginPage.passwordInput))
     await expect(page).toHaveURL(TestUrlData.urlLogin.url);  
 });
 

@@ -1,4 +1,5 @@
 import {Page, Locator} from '@playwright/test';
+import obtenerMensajeDeValidacion from '../utils/obtenerMensajeDeValidacion';
 
 export class LoginPage{
     readonly page: Page;
@@ -19,7 +20,7 @@ export class LoginPage{
 
     async visitarPaginaLogin() {
         await this.page.goto('http://localhost:3000/login');
-        //await this.page.waitForLoadState('networkidle'); "Se comento esta linea ya que en firefox falla 2 casos de prueba por este waitforloadstate"
+        await this.page.waitForLoadState('networkidle'); //"Porque para firefox cada tanto falla esta linea consulta"
     }
 
     async completarFormularioLogin(usuario: {email: string, contraseña: string}) {
@@ -42,5 +43,17 @@ export class LoginPage{
 
     async cerrarSesion() {
         await this.logoutButton.click();
+    }
+
+    async esEmailInvalido(): Promise<boolean> {
+        return await this.emailInput.evaluate((input: HTMLInputElement) => !input.checkValidity());
+    }
+
+    async esPasswordInvalido(): Promise<boolean> {
+        return await this.passwordInput.evaluate((input: HTMLInputElement) => !input.checkValidity());
+    }
+
+    async obtenerMensajeValidacionCampo(selector: string): Promise<string> {
+        return await obtenerMensajeDeValidacion(this.page, selector);
     }
 }
