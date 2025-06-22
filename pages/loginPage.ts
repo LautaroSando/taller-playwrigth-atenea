@@ -1,4 +1,5 @@
 import {Page, Locator} from '@playwright/test';
+import obtenerMensajeDeValidacion from '../utils/obtenerMensajeDeValidacion';
 
 export class LoginPage{
     readonly page: Page;
@@ -42,5 +43,17 @@ export class LoginPage{
 
     async cerrarSesion() {
         await this.logoutButton.click();
+    }
+
+    async esEmailInvalido(): Promise<boolean> {
+        return await this.emailInput.evaluate((input: HTMLInputElement) => !input.checkValidity());
+    }
+
+    async esPasswordInvalido(): Promise<boolean> {
+        return await this.passwordInput.evaluate((input: HTMLInputElement) => !input.checkValidity());
+    }
+
+    async obtenerMensajeValidacionCampo(selector: string): Promise<string> {
+        return await obtenerMensajeDeValidacion(this.page, selector);
     }
 }
